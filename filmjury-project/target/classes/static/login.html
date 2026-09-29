@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FilmJury - Login</title><link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="login-page">
+<div class="login-card">
+  <div class="brand">🎬 <span>FilmJury</span></div>
+  <h1>Welcome back</h1>
+  <p class="muted">Short Film Contest Management System</p>
+  <form id="loginForm">
+    <label>Username</label><input id="username" required placeholder="Enter username">
+    <label>Password</label><input id="password" type="password" required placeholder="Enter password">
+    <button class="primary full" type="submit">Login</button>
+    <div id="loginError" class="error"></div>
+  </form>
+  <div class="demo-box"><b>Demo accounts</b><br>Admin: <code>admin / admin123</code><br>Judge: <code>judge / judge123</code></div>
+</div>
+<script>
+document.getElementById('loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const res = await fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({username:username.value,password:password.value})});
+  if(res.ok) location.href='/index.html';
+  else loginError.textContent=(await res.json()).message || 'Login failed';
+});
+</script>
+</body></html>

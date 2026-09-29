@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FilmJury Dashboard</title><link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">🎬 FilmJury</div>
+  <div class="top-actions"><span id="currentUser"></span><button id="logoutBtn" class="ghost">Logout</button></div>
+</header>
+<div class="layout">
+<aside class="sidebar">
+  <button class="nav active" data-page="dashboard">📊 Dashboard</button>
+  <button class="nav" data-page="entries">🎞️ Film Entries</button>
+  <button class="nav" data-page="judges">👩‍⚖️ Judges</button>
+  <button class="nav" data-page="criteria">📋 Criteria</button>
+  <button class="nav" data-page="scorecards">⭐ Scorecards</button>
+  <button class="nav" data-page="leaderboard">🏆 Leaderboard</button>
+</aside>
+<main class="content">
+<section id="dashboard" class="page active">
+  <h1>Contest Dashboard</h1><p class="muted">Manage submissions, judges, scoring and rankings.</p>
+  <div class="stats">
+    <div class="stat"><span>🎞️</span><b id="statEntries">0</b><small>Film Entries</small></div>
+    <div class="stat"><span>👩‍⚖️</span><b id="statJudges">0</b><small>Judges</small></div>
+    <div class="stat"><span>⭐</span><b id="statScores">0</b><small>Scorecards</small></div>
+    <div class="stat"><span>🏆</span><b id="statAvg">0</b><small>Average Score</small></div>
+  </div>
+  <div class="panel"><h2>How scoring works</h2><p>Each judge scores Creativity, Originality, Technical and Presentation from 0–10. A scorecard total is the average of those four criteria. A film's final score is the average of all submitted judge scorecards.</p></div>
+</section>
+
+<section id="entries" class="page"><div class="page-head"><div><h1>Film Entries</h1><p class="muted">Create, edit and delete contest submissions.</p></div><button class="primary" onclick="openEntryModal()">+ Add Entry</button></div><div id="entriesTable" class="table-wrap"></div></section>
+
+<section id="judges" class="page"><div class="page-head"><div><h1>Judges</h1><p class="muted">Manage judges assigned to entries.</p></div><button class="primary" onclick="openJudgeModal()">+ Add Judge</button></div><div id="judgesTable" class="table-wrap"></div></section>
+
+<section id="criteria" class="page"><div class="page-head"><div><h1>Criteria</h1><p class="muted">Fixed scoring criteria used by judges.</p></div><button class="primary" onclick="openCriterionModal()">+ Add Criterion</button></div><div id="criteriaTable" class="table-wrap"></div></section>
+
+<section id="scorecards" class="page"><div class="page-head"><div><h1>Scorecards</h1><p class="muted">One scorecard per judge for each film.</p></div><button class="primary" onclick="openScoreModal()">+ Submit Score</button></div><div id="scoresTable" class="table-wrap"></div></section>
+
+<section id="leaderboard" class="page"><div class="page-head"><div><h1>Leaderboard</h1><p class="muted">Entries ranked by average judge score.</p></div><button class="ghost" onclick="loadAll()">↻ Refresh</button></div><div id="leaderboardTable" class="table-wrap"></div></section>
+</main></div>
+
+<div id="modal" class="modal"><div class="modal-card"><button class="close" onclick="closeModal()">×</button><div id="modalBody"></div></div></div>
+<div id="toast" class="toast"></div>
+<script src="/js/app.js"></script>
+</body></html>
